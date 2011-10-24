@@ -2,6 +2,7 @@
 #define PREFERENCEDIALOG2_H
 
 #include <QDialog>
+#include "ui_preferenceDialog2.h"
 
 namespace Ui {
     class PreferenceDialog2;

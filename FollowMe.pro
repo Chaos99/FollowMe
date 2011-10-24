@@ -13,12 +13,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     filelist.cpp \
-    preferencedialog.cpp \
     preferencedialog2.cpp
 
 HEADERS  += mainwindow.h \
     filelist.h \
-    preferencedialog.h \
     preferencedialog2.h
 
 FORMS    += mainwindow.ui \

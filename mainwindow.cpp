@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 //#include "ui_mainwindow.h"
-#include "preferencedialog.h"
+
 #include <QFileSystemModel>
 #include <QTreeView>
 #include <QSettings>
@@ -38,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMenu* fileMenu = menu->addMenu(tr("&File"));
     fileMenu->addAction(prefAct);
 
+    ui = new PreferenceDialog2(this);
+
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -56,17 +58,13 @@ QSize MainWindow::sizeHint()
 
 void MainWindow::openPreferences()
 {
-    QDialog* pref = PreferenceDialog(this);
-    pref->show();
+    //ui = new(Ui::PreferenceDialog2);
+    //QDialog* pref = PreferenceDialog(this);
+    ui->show();
 }
 
 
-//    ui(new Ui::MainWindow)
-//{
-//    ui->setupUi(this);
-//}
-
-//MainWindow::~MainWindow()
-//{
-//    delete ui;
-//}
+MainWindow::~MainWindow()
+{
+    delete ui;
+}

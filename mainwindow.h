@@ -5,10 +5,8 @@
 #include <QSize>
 #include <QAction>
 #include "filelist.h"
+#include "preferencedialog2.h"
 
-namespace Ui {
-    class MainWindow;
-}
 
 class MainWindow : public QMainWindow
 {
@@ -16,13 +14,13 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    // ~MainWindow();
+    ~MainWindow();
     void closeEvent(QCloseEvent *event);
     QSize sizeHint();
 
 private:
 
-    //Ui::MainWindow *ui;
+    QDialog *ui;
     FMFileList *mfilelist;
 
 public slots:
