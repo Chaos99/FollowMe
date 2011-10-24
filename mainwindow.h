@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSize>
+#include <QAction>
 #include "filelist.h"
 
 namespace Ui {
@@ -20,8 +21,12 @@ public:
     QSize sizeHint();
 
 private:
+
     //Ui::MainWindow *ui;
     FMFileList *mfilelist;
+
+public slots:
+    void openPreferences();
 };
 
 #endif // MAINWINDOW_H

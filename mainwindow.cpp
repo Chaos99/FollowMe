@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 //#include "ui_mainwindow.h"
+#include "preferencedialog.h"
 #include <QFileSystemModel>
 #include <QTreeView>
 #include <QSettings>
+#include <QMenuBar>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -27,8 +29,14 @@ MainWindow::MainWindow(QWidget *parent) :
     list->setMinimumSize(QSize(200,200));
     setCentralWidget(list);
 
+    QAction *prefAct = new QAction(tr("&Preferences..."), this);
+    prefAct->setShortcuts(QKeySequence::Preferences);
+    prefAct->setStatusTip(tr("Open preference pane"));
+    connect(prefAct, SIGNAL(triggered()), this, SLOT(openPreferences()));
 
-
+    QMenuBar* menu = menuBar();
+    QMenu* fileMenu = menu->addMenu(tr("&File"));
+    fileMenu->addAction(prefAct);
 
 }
 
@@ -44,6 +52,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
 QSize MainWindow::sizeHint()
 {
     return QSize(800,600);
+}
+
+void MainWindow::openPreferences()
+{
+    QDialog* pref = PreferenceDialog(this);
+    pref->show();
 }
 
 
