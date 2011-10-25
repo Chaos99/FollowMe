@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSize>
 #include <QAction>
+#include <QFileSystemModel>
 #include "filelist.h"
 #include "preferencedialog2.h"
 
@@ -17,11 +18,15 @@ public:
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
     QSize sizeHint();
+    void updateFileBrowser(QString path);
 
 private:
 
     QDialog *ui;
     FMFileList *mfilelist;
+    QTreeView *list;
+    QFileSystemModel *model;
+
 
 public slots:
     void openPreferences();

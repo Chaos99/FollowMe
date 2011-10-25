@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 //#include "ui_mainwindow.h"
 
-#include <QFileSystemModel>
 #include <QTreeView>
 #include <QSettings>
 #include <QMenuBar>
@@ -15,18 +14,11 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreState(settings.value("windowState", saveState()).toByteArray());
 
     mfilelist= new FMFileList(parent);
-    QFileSystemModel *model = new QFileSystemModel;
-    model->setRootPath(QDir::homePath());
-
-    QTreeView *list = new QTreeView(this);
-    list->setModel(model);
-    list->setRootIndex(model->index(QDir::homePath()));
-    list->setUniformRowHeights(true);
-    list->setAnimated(true);
-    list->setSortingEnabled(true);
-    list->resizeColumnToContents(1);
-
-    list->setMinimumSize(QSize(200,200));
+    model = new QFileSystemModel;
+    QString extPath = settings.value("extPath",QDir::homePath()).toString();
+    model->setRootPath(extPath );
+    list = new QTreeView(this);
+    updateFileBrowser(extPath);
     setCentralWidget(list);
 
     QAction *prefAct = new QAction(tr("&Preferences..."), this);
@@ -56,10 +48,23 @@ QSize MainWindow::sizeHint()
     return QSize(800,600);
 }
 
+void MainWindow::updateFileBrowser(QString path)
+{
+
+
+    list->setModel(model);
+    list->setRootIndex(model->index(path));
+    list->setUniformRowHeights(true);
+    list->setAnimated(true);
+    list->setSortingEnabled(true);
+    list->resizeColumnToContents(1);
+
+    list->setMinimumSize(QSize(200,200));
+
+}
+
 void MainWindow::openPreferences()
 {
-    //ui = new(Ui::PreferenceDialog2);
-    //QDialog* pref = PreferenceDialog(this);
     ui->show();
 }
 

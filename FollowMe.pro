@@ -22,6 +22,10 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     preferencedialog2.ui
 
+OTHER_FILES += \
+    README.txt
+
+
 
 
 
